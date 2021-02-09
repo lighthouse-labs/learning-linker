@@ -81,16 +81,26 @@ OBJECTS = {
 module LearningLinker
   # Class for creating statements and posting them to LearningLocker LRS
   class StatementHandler
-    def self.form_statement(actor, verb, object)
+    def self.format_statement(statement)
+      # Verbs can be provided as hash or string.
+      # If hash, use directly. If string, perform lookup.
+      verb = statement[:verb]
+      verb = VERBS[verb.to_sym] if verb.class == String
+
+      # Objects work the same as verbs
+      object = statement[:object]
+      object = OBJECTS[object.to_sym] if object.class == String
+
       {
-        actor: actor || TEST_ACTOR,
-        verb: VERBS[verb.to_sym],
-        object: OBJECTS[object.to_sym]
+        actor: statement[:actor] || TEST_ACTOR,
+        verb: verb,
+        object: object,
+        context: statement[:context]
       }
     end
 
-    def self.post_statement(actor, verb, object)
-      statement = form_statement(actor, verb, object)
+    def self.post_statement(statement)
+      statement = format_statement(statement)
 
       HTTParty.post("#{ENV['LRS_XAPI_URL']}/statements", {
                       body: statement.to_json,
