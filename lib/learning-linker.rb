@@ -95,7 +95,7 @@ class LearningLinker
 
     HTTParty.post("#{ENV['LRS_XAPI_URL']}/statements", {
                     body: statement.to_json,
-                    headers: { 'Authorization': 'Basic ' + ENV['LRS_XAPI_AUTH'],
+                    headers: { 'Authorization': "Basic #{ENV['LRS_XAPI_AUTH']}",
                                'X-Experience-API-Version': '1.0.3',
                                'Content-Type': 'application/json' }
                   })
