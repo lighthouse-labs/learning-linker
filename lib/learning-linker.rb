@@ -79,8 +79,7 @@ OBJECTS = {
 
 class LearningLinker
   def self.get_status
-    response = HTTParty.get("#{ENV['LRS_XAPI_URL']}/about")
-    puts response
+    HTTParty.get("#{ENV['LRS_XAPI_URL']}/about")
   end
 
   def self.form_statement(actor, verb, object)
