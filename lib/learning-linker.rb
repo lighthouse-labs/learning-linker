@@ -25,6 +25,12 @@ VERBS = {
     "display": {
       "en-US": 'cancelled'
     }
+  },
+  "viewed": {
+    "id": 'http://id.tincanapi.com/verb/viewed',
+    "display": {
+      "en-US": 'viewed'
+    }
   }
 }.freeze
 
@@ -43,6 +49,30 @@ OBJECTS = {
       "name": { "en-US": 'Assistance Feedback' },
       "description": { "en-US": "A student's feedback for assistance they received from a mentor." },
       "type": 'http://activitystrea.ms/schema/1.0/review'
+    }
+  },
+  "activity": {
+    "id": 'http://lighthouselabs.ca/xapi/activities/activity',
+    "definition": {
+      "name": { "en-US": 'Activity' },
+      "description": { "en-US": 'A Compass student activity. Includes readings, exercises, etc.' },
+      "type": 'http://id.tincanapi.com/activitytype/school-assignment'
+    }
+  },
+  "activity-feedback": {
+    "id": 'http://lighthouselabs.ca/xapi/activities/activity-feedback',
+    "definition": {
+      "name": { "en-US": 'Activity Feedback' },
+      "description": { "en-US": "A student's feedback for a given Compass activity." },
+      "type": 'http://id.tincanapi.com/activitytype/school-assignment'
+    }
+  },
+  "project": {
+    "id": 'http://lighthouselabs.ca/xapi/activities/project',
+    "definition": {
+      "name": { "en-US": 'Project' },
+      "description": { "en-US": 'A Compass student project. Requires submission and is evaluated by staff.' },
+      "type": 'http://id.tincanapi.com/activitytype/project'
     }
   }
 }.freeze
