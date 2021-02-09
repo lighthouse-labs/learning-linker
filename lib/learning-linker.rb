@@ -115,8 +115,8 @@ module LearningLinker
   class PostStatementWorker
     include Sidekiq::Worker
 
-    def perform(actor, verb, action)
-      StatementHandler.post_statement(actor, verb, action)
+    def perform(statement)
+      StatementHandler.post_statement(statement)
     end
   end
 end
