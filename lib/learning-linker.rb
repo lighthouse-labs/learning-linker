@@ -13,6 +13,18 @@ VERBS = {
     "display": {
       "en-US": 'completed'
     }
+  },
+  "submitted": {
+    "id": 'http://activitystrea.ms/schema/1.0/submit',
+    "display": {
+      "en-US": 'submitted'
+    }
+  },
+  "cancelled": {
+    "id": 'http://activitystrea.ms/schema/1.0/cancel',
+    "display": {
+      "en-US": 'cancelled'
+    }
   }
 }.freeze
 
@@ -23,6 +35,14 @@ OBJECTS = {
       "name": { "en-US": 'Assistance Request' },
       "description": { "en-US": "A student's request for assistance from a mentor." },
       "type": 'http://id.tincanapi.com/activitytype/tutor-session'
+    }
+  },
+  "assistance-feedback": {
+    "id": 'http://lighthouselabs.ca/xapi/activities/assistance-feedback',
+    "definition": {
+      "name": { "en-US": 'Assistance Feedback' },
+      "description": { "en-US": "A student's feedback for assistance they received from a mentor." },
+      "type": 'http://activitystrea.ms/schema/1.0/review'
     }
   }
 }.freeze
@@ -41,8 +61,8 @@ class LearningLinker
     }
   end
 
-  def self.post_statement
-    statement = form_statement(nil, 'completed', 'assistance-request')
+  def self.post_statement(actor, verb, object)
+    statement = form_statement(actor, verb, object)
 
     HTTParty.post("#{ENV['LRS_XAPI_URL']}/statements", {
                     body: statement.to_json,
