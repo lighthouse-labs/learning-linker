@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'httparty'
+require 'sidekiq'
 
 TEST_ACTOR = {
   "name": 'Learning Linker',
@@ -77,27 +78,35 @@ OBJECTS = {
   }
 }.freeze
 
-class LearningLinker
-  def self.get_status
-    HTTParty.get("#{ENV['LRS_XAPI_URL']}/about")
+module LearningLinker
+  # Class for creating statements and posting them to LearningLocker LRS
+  class StatementHandler
+    def self.form_statement(actor, verb, object)
+      {
+        actor: actor || TEST_ACTOR,
+        verb: VERBS[verb.to_sym],
+        object: OBJECTS[object.to_sym]
+      }
+    end
+
+    def self.post_statement(actor, verb, object)
+      statement = form_statement(actor, verb, object)
+
+      HTTParty.post("#{ENV['LRS_XAPI_URL']}/statements", {
+                      body: statement.to_json,
+                      headers: { 'Authorization': "Basic #{ENV['LRS_XAPI_AUTH']}",
+                                 'X-Experience-API-Version': '1.0.3',
+                                 'Content-Type': 'application/json' }
+                    })
+    end
   end
 
-  def self.form_statement(actor, verb, object)
-    {
-      actor: actor || TEST_ACTOR,
-      verb: VERBS[verb.to_sym],
-      object: OBJECTS[object.to_sym]
-    }
-  end
+  # Sidekiq worker for posting statements in the background
+  class PostStatementWorker
+    include Sidekiq::Worker
 
-  def self.post_statement(actor, verb, object)
-    statement = form_statement(actor, verb, object)
-
-    HTTParty.post("#{ENV['LRS_XAPI_URL']}/statements", {
-                    body: statement.to_json,
-                    headers: { 'Authorization': "Basic #{ENV['LRS_XAPI_AUTH']}",
-                               'X-Experience-API-Version': '1.0.3',
-                               'Content-Type': 'application/json' }
-                  })
+    def perform(actor, verb, action)
+      StatementHandler.post_statement(actor, verb, action)
+    end
   end
 end
