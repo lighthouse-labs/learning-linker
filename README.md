@@ -6,7 +6,9 @@ Custom Ruby gem for communicating with LearningLocker instances using the xAPI s
 
 To add this gem to your Rails project, add the following line to your gemfile, using the latest tagged release:
 
-`gem ‘learning-linker’, git: “https://github.com/lighthouse-labs/learning-linker.git”, tag: ‘[latest tagged version in Releases]’`
+`gem 'learning-linker', git: 'https://github.com/lighthouse-labs/learning-linker.git', tag: '[latest tagged version in Releases]'`
+
+Then run `bundle`!
 
 ### Environment Variables
 
