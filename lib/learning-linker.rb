@@ -37,7 +37,7 @@ module LearningLinker
   }.freeze
 
   OBJECTS = {
-    "assistance-request": {
+    "assistance_request": {
       "id": 'http://lighthouselabs.ca/xapi/activities/assistance-request',
       "definition": {
         "name": { "en-US": 'Assistance Request' },
@@ -45,7 +45,7 @@ module LearningLinker
         "type": 'http://id.tincanapi.com/activitytype/tutor-session'
       }
     },
-    "assistance-feedback": {
+    "assistance_feedback": {
       "id": 'http://lighthouselabs.ca/xapi/activities/assistance-feedback',
       "definition": {
         "name": { "en-US": 'Assistance Feedback' },
@@ -61,7 +61,7 @@ module LearningLinker
         "type": 'http://id.tincanapi.com/activitytype/school-assignment'
       }
     },
-    "activity-feedback": {
+    "activity_feedback": {
       "id": 'http://lighthouselabs.ca/xapi/activities/activity-feedback',
       "definition": {
         "name": { "en-US": 'Activity Feedback' },
@@ -80,7 +80,7 @@ module LearningLinker
   }.freeze
 
   EXTENSIONS = {
-    "learner-info": 'http://lighthouselabs.ca/xapi/extension/learner-info'
+    "learner_info": 'http://lighthouselabs.ca/xapi/extension/learner-info'
   }.freeze
 
   # Class for creating statements and posting them to LearningLocker LRS
