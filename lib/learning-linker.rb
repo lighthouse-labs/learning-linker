@@ -79,8 +79,13 @@ module LearningLinker
     }
   }.freeze
 
+  EXTENSIONS = {
+    "learner-info": 'http://lighthouselabs.ca/xapi/extension/learner-info'
+  }.freeze
+
   # Class for creating statements and posting them to LearningLocker LRS
   class StatementHandler
+    # Take input statement and map given verbs, objects, and extensions to definitions
     def self.format_statement(statement)
       # Verbs can be provided as hash or string.
       # If hash, use directly. If string, perform lookup.
@@ -99,13 +104,32 @@ module LearningLinker
 
       # Context and result must be set separately since they are optional but not nullable
       if statement['context']
-        formatted_statement[:context] = statement['context']
+        formatted_statement[:context] = map_extensions(statement['context'])
       end
-      formatted_statement[:result] = statement['result'] if statement['result']
+      if statement['result']
+        formatted_statement[:result] = map_extensions(statement['result'])
+      end
 
       formatted_statement
     end
 
+    # Maps extension keys in a given element (context or result) to defined values, if possible
+    # Returns a copy of the element with its extension keys mapped
+    def self.map_extensions(element)
+      return element unless element['extensions']
+
+      result = element.clone
+      mapped_extensions = {}
+
+      result['extensions'].each do |key, value|
+        mapped_extensions[EXTENSIONS[key.to_sym] || key] = value
+      end
+
+      result['extensions'] = mapped_extensions
+      result
+    end
+
+    # Send a statement to the LRS via HTTP
     def self.post_statement(statement)
       statement = format_statement(statement)
 
