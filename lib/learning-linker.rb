@@ -97,10 +97,11 @@ module LearningLinker
         object: object
       }
 
-      # Context must be set separately since it is optional but not nullable
+      # Context and result must be set separately since they are optional but not nullable
       if statement['context']
         formatted_statement[:context] = statement['context']
       end
+      formatted_statement[:result] = statement['result'] if statement['result']
 
       formatted_statement
     end
