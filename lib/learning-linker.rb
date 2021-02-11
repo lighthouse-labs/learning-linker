@@ -80,7 +80,10 @@ module LearningLinker
   }.freeze
 
   EXTENSIONS = {
-    "learner_info": 'http://lighthouselabs.ca/xapi/extension/learner-info'
+    "learner_info": 'http://lighthouselabs.ca/xapi/extensions/learner-info',
+    "tags": 'http://lighthouselabs.ca/xapi/extensions/tags',
+    "mentor_notes": 'http://lighthouselabs.ca/xapi/extensions/mentor-notes',
+    "request_reason": 'http://lighthouselabs.ca/xapi/extensions/request-reason'
   }.freeze
 
   # Class for creating statements and posting them to LearningLocker LRS
