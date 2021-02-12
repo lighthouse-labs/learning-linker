@@ -4,11 +4,6 @@ module LearningLinker
   require 'httparty'
   require 'sidekiq'
 
-  TEST_ACTOR = {
-    "name": 'Learning Linker',
-    "mbox": 'mailto:learninglink@lighthouselabs.com'
-  }.freeze
-
   VERBS = {
     "completed": {
       "id": 'http://activitystrea.ms/schema/1.0/complete',
@@ -109,54 +104,8 @@ module LearningLinker
 
   # Class for creating statements and posting them to LearningLocker LRS
   class StatementHandler
-    # Take input statement and map given verbs, objects, and extensions to definitions
-    def self.format_statement(statement)
-      # Verbs can be provided as hash or string.
-      # If hash, use directly. If string, perform lookup.
-      verb = statement['verb']
-      verb = VERBS[verb.to_sym] if verb.instance_of?(String)
-
-      # Objects work the same as verbs
-      object = statement['object']
-      object = OBJECTS[object.to_sym] if object.instance_of?(String)
-
-      formatted_statement = {
-        actor: statement['actor'] || TEST_ACTOR,
-        verb: verb,
-        object: object
-      }
-
-      # Context and result must be set separately since they are optional but not nullable
-      if statement['context']
-        formatted_statement[:context] = map_extensions(statement['context'])
-      end
-      if statement['result']
-        formatted_statement[:result] = map_extensions(statement['result'])
-      end
-
-      formatted_statement
-    end
-
-    # Maps extension keys in a given element (context or result) to defined values, if possible
-    # Returns a copy of the element with its extension keys mapped
-    def self.map_extensions(element)
-      return element unless element['extensions']
-
-      result = element.clone
-      mapped_extensions = {}
-
-      result['extensions'].each do |key, value|
-        mapped_extensions[EXTENSIONS[key.to_sym] || key] = value
-      end
-
-      result['extensions'] = mapped_extensions
-      result
-    end
-
     # Send a statement to the LRS via HTTP
     def self.post_statement(statement)
-      statement = format_statement(statement)
-
       HTTParty.post("#{ENV['LRS_XAPI_URL']}/statements", {
                       body: statement.to_json,
                       headers: { 'Authorization': "Basic #{ENV['LRS_XAPI_AUTH']}",
