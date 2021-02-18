@@ -123,6 +123,8 @@ module LearningLinker
   class PostStatementWorker
     include Sidekiq::Worker
 
+    sidekiq_options retry: false
+
     def perform(statement)
       StatementHandler.post_statement(statement)
     end
