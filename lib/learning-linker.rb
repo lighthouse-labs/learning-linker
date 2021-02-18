@@ -106,12 +106,16 @@ module LearningLinker
   class StatementHandler
     # Send a statement to the LRS via HTTP
     def self.post_statement(statement)
-      HTTParty.post("#{ENV['LRS_XAPI_URL']}/statements", {
-                      body: statement.to_json,
-                      headers: { 'Authorization': "Basic #{ENV['LRS_XAPI_AUTH']}",
-                                 'X-Experience-API-Version': '1.0.3',
-                                 'Content-Type': 'application/json' }
-                    })
+      response = HTTParty.post("#{ENV['LRS_XAPI_URL']}/statements", {
+                                 body: statement.to_json,
+                                 headers: { 'Authorization': "Basic #{ENV['LRS_XAPI_AUTH']}",
+                                            'X-Experience-API-Version': '1.0.3',
+                                            'Content-Type': 'application/json' }
+                               })
+
+      if response.code != 200
+        raise "LRS did not accept the statement given. Statement: #{statement}"
+      end
     end
   end
 
