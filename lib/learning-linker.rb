@@ -107,7 +107,8 @@ module LearningLinker
     # Send a statement to the LRS via HTTP
     def self.post_statement(statement)
       unless ENV['LRS_XAPI_URL'] && ENV['LRS_XAPI_AUTH']
-        raise 'Warning: LRS not configured! No statement was sent.'
+        puts 'Warning: LRS not configured! No statement was sent.'
+        return
       end
 
       response = HTTParty.post("#{ENV['LRS_XAPI_URL']}/statements", {
