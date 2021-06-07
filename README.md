@@ -10,14 +10,6 @@ To add this gem to your Rails project, add the following line to your gemfile, u
 
 Then run `bundle`!
 
-### Environment Variables
-
-Ensure your Rails environment has the following environment variables:
-
-| `LRS_XAPI_URL`  | URL leading to the xAPI endpoint of your LearningLocker LRS |
-| --------------- | ----------------------------------------------------------- |
-| `LRS_XAPI_AUTH` | Basic Authorization token for the LearningLocker instance   |
-
 ## Using in a project
 
 Once the gem is installed in your project and the environment is set up, you can start posting statements! There are two functions you can use for this, and they both take an xAPI statement hash as a parameter:
@@ -25,13 +17,13 @@ Once the gem is installed in your project and the environment is set up, you can
 For asynchronous statement posting, if you're working with `sidekiq` (recommended):
 
 ```ruby
-LearningLinker::PostStatementWorker.perform_async(...)
+LearningLinker::PostStatementWorker.perform_async(<endpoint_url>, <basic_auth_token>, <statement>)
 ```
 
 If `sidekiq` is not a part of your project, you can post the statement synchronously with:
 
 ```ruby
-LearningLinker::StatementHandler.post_statement(...)
+LearningLinker::StatementHandler.post_statement(<endpoint_url>, <basic_auth_token>, <statement>)
 ```
 
 ### Statement constants
@@ -72,7 +64,10 @@ While you're free to form a complete custom statement from scratch, this gem als
 To put it all together, here's an example call that might be made when a student (`@student`) views an activity (`@activity`):
 
 ```ruby
-  LearningLinker::PostStatementWorker.perform_async({
+  LearningLinker::PostStatementWorker.perform_async(
+    <endpoint_url>,
+    <auth_token>,
+    {
       actor:   {
         name:       @student.name,
         mbox:       "mailto:#{@student.email}",
