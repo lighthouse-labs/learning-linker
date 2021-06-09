@@ -28,10 +28,10 @@ LearningLinker::StatementHandler.post_statement(<connection>, <statement>)
 
 ## Connection hash
 
- The connection hash expected by LearningLinker requires two properties, both relating to values you can find in your LearningLocker instance's "client" section:
+The connection hash expected by LearningLinker requires two properties, both relating to values you can find in your LearningLocker instance's "client" section:
 
- - `xapi_url` - xAPI Endpoint. Example: `https://locker.example.com/data/xAPI`
- - `basic_auth` - Basic auth token string, with "Basic " prepended. Example: `Basic OWY3YmRmNzkxZjBkMjA5MzBmM2JlMGVkYTQ1Y2E0OTZhYjExampleToyMmU3OGQ3YjQ5MGJhYWRlNTg5NTgwNzg5ZTA1ZjRkOTQ3YjRkMDg5`
+- `xapi_url` - xAPI Endpoint. Example: `https://locker.example.com/data/xAPI`
+- `basic_auth` - Basic auth token string, with "Basic " prepended. Example: `Basic OWY3YmRmNzkxZjBkMjA5MzBmM2JlMGVkYTQ1Y2E0OTZhYjExampleToyMmU3OGQ3YjQ5MGJhYWRlNTg5NTgwNzg5ZTA1ZjRkOTQ3YjRkMDg5`
 
 ### Statement constants
 
@@ -39,32 +39,36 @@ While you're free to form a complete custom statement from scratch, this gem als
 
 `LearningLinker::VERBS`
 
-- `:completed`
-- `:submitted`
 - `:cancelled`
+- `:completed`
+- `:received`
+- `:started`
+- `:submitted`
 - `:viewed`
 
 `LearningLinker::OBJECTS`
 
-- `:assistance_request`
-- `:assistance_feedback`
 - `:activity`
 - `:activity_feedback`
-- `:project`
+- `:assistance`
+- `:assistance_feedback`
+- `:assistance_request`
 - `:lecture_feedback`
-- `:prep_course`
+- `:project`
 
 `LearningLinker::EXTENSIONS`
 
-- `:learner_info`
-- `:tags`
-- `:mentor_notes`
-- `:request_reason`
 - `:activity_name`
 - `:activity_type`
 - `:activity_uuid`
-- `:student_notes`
+- `:assistance_id`
 - `:github_url`
+- `:learner_info`
+- `:mentor_notes`
+- `:request_id`
+- `:request_reason`
+- `:student_notes`
+- `:tags`
 
 ### Example statement post call
 

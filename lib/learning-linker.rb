@@ -5,22 +5,34 @@ module LearningLinker
   require 'sidekiq'
 
   VERBS = {
+    "cancelled": {
+      "id": 'http://activitystrea.ms/schema/1.0/cancel',
+      "display": {
+        "en-US": 'cancelled'
+      }
+    },
     "completed": {
       "id": 'http://activitystrea.ms/schema/1.0/complete',
       "display": {
         "en-US": 'completed'
       }
     },
+    "received": {
+      "id": 'http://activitystrea.ms/schema/1.0/receive',
+      "display": {
+        "en-US": 'received'
+      }
+    },
+    "started": {
+      "id": 'http://activitystrea.ms/schema/1.0/start',
+      "display": {
+        "en-US": 'started'
+      }
+    },
     "submitted": {
       "id": 'http://activitystrea.ms/schema/1.0/submit',
       "display": {
         "en-US": 'submitted'
-      }
-    },
-    "cancelled": {
-      "id": 'http://activitystrea.ms/schema/1.0/cancel',
-      "display": {
-        "en-US": 'cancelled'
       }
     },
     "viewed": {
@@ -32,22 +44,6 @@ module LearningLinker
   }.freeze
 
   OBJECTS = {
-    "assistance_request": {
-      "id": 'http://lighthouselabs.ca/xapi/activities/assistance-request',
-      "definition": {
-        "name": { "en-US": 'Assistance Request' },
-        "description": { "en-US": "A student's request for assistance from a mentor." },
-        "type": 'http://id.tincanapi.com/activitytype/tutor-session'
-      }
-    },
-    "assistance_feedback": {
-      "id": 'http://lighthouselabs.ca/xapi/activities/assistance-feedback',
-      "definition": {
-        "name": { "en-US": 'Assistance Feedback' },
-        "description": { "en-US": "A student's feedback for assistance they received from a mentor." },
-        "type": 'http://activitystrea.ms/schema/1.0/review'
-      }
-    },
     "activity": {
       "id": 'http://lighthouselabs.ca/xapi/activities/activity',
       "definition": {
@@ -64,12 +60,28 @@ module LearningLinker
         "type": 'http://id.tincanapi.com/activitytype/review'
       }
     },
-    "project": {
-      "id": 'http://lighthouselabs.ca/xapi/activities/project',
+    "assistance": {
+      "id": 'http://lighthouselabs.ca/xapi/activities/assistance',
       "definition": {
-        "name": { "en-US": 'Project' },
-        "description": { "en-US": 'A Compass student project. Requires submission and is evaluated by staff.' },
-        "type": 'http://id.tincanapi.com/activitytype/project'
+        "name": { "en-US": 'Assistance' },
+        "description": { "en-US": 'A meeting in which a student speaks with a mentor for advice or help.' },
+        "type": 'http://id.tincanapi.com/activitytype/tutor-session'
+      }
+    },
+    "assistance_request": {
+      "id": 'http://lighthouselabs.ca/xapi/activities/assistance-request',
+      "definition": {
+        "name": { "en-US": 'Assistance Request' },
+        "description": { "en-US": "A student's request for assistance from a mentor." },
+        "type": 'http://id.tincanapi.com/activitytype/tutor-session'
+      }
+    },
+    "assistance_feedback": {
+      "id": 'http://lighthouselabs.ca/xapi/activities/assistance-feedback',
+      "definition": {
+        "name": { "en-US": 'Assistance Feedback' },
+        "description": { "en-US": 'Feedback from either student or mentor about an assistance.' },
+        "type": 'http://activitystrea.ms/schema/1.0/review'
       }
     },
     "lecture_feedback": {
@@ -80,26 +92,28 @@ module LearningLinker
         "type": 'http://id.tincanapi.com/activitytype/review'
       }
     },
-    "prep_course": {
-      "id": 'http://lighthouselabs.ca/xapi/activities/prep-course',
+    "project": {
+      "id": 'http://lighthouselabs.ca/xapi/activities/project',
       "definition": {
-        "name": { "en-US": 'Prep Course' },
-        "description": { "en-US": "A course given in preparation for one of Compass's programs." },
-        "type": 'http://adlnet.gov/expapi/activities/course'
+        "name": { "en-US": 'Project' },
+        "description": { "en-US": 'A Compass student project. Requires submission and is evaluated by staff.' },
+        "type": 'http://id.tincanapi.com/activitytype/project'
       }
     }
   }.freeze
 
   EXTENSIONS = {
-    "learner_info": 'http://lighthouselabs.ca/xapi/extensions/learner-info',
-    "tags": 'http://lighthouselabs.ca/xapi/extensions/tags',
-    "mentor_notes": 'http://lighthouselabs.ca/xapi/extensions/mentor-notes',
-    "request_reason": 'http://lighthouselabs.ca/xapi/extensions/request-reason',
+    "assistance_id": 'http://lighthouselabs.ca/xapi/extensions/assistance-id',
     "activity_name": 'http://lighthouselabs.ca/xapi/extensions/activity-name',
     "activity_type": 'http://lighthouselabs.ca/xapi/extensions/activity-type',
     "activity_uuid": 'http://lighthouselabs.ca/xapi/extensions/activity-uuid',
+    "github_url": 'http://lighthouselabs.ca/xapi/extensions/github-url',
+    "learner_info": 'http://lighthouselabs.ca/xapi/extensions/learner-info',
+    "mentor_notes": 'http://lighthouselabs.ca/xapi/extensions/mentor-notes',
+    "request_id": 'http://lighthouselabs.ca/xapi/extensions/request_id',
+    "request_reason": 'http://lighthouselabs.ca/xapi/extensions/request-reason',
     "student_notes": 'http://lighthouselabs.ca/xapi/extensions/student-notes',
-    "github_url": 'http://lighthouselabs.ca/xapi/extensions/github-url'
+    "tags": 'http://lighthouselabs.ca/xapi/extensions/tags'
   }.freeze
 
   # Class for creating statements and posting them to LearningLocker LRS
