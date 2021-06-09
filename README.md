@@ -12,19 +12,26 @@ Then run `bundle`!
 
 ## Using in a project
 
-Once the gem is installed in your project and the environment is set up, you can start posting statements! There are two functions you can use for this, and they both take an xAPI statement hash as a parameter:
+Once the gem is installed in your project, you can start posting statements! There are two functions you can use for this, and they both take hashes of connection information and an xAPI statement as parameters.
 
 For asynchronous statement posting, if you're working with `sidekiq` (recommended):
 
 ```ruby
-LearningLinker::PostStatementWorker.perform_async(<endpoint_url>, <basic_auth_token>, <statement>)
+LearningLinker::PostStatementWorker.perform_async(<connection>, <statement>)
 ```
 
 If `sidekiq` is not a part of your project, you can post the statement synchronously with:
 
 ```ruby
-LearningLinker::StatementHandler.post_statement(<endpoint_url>, <basic_auth_token>, <statement>)
+LearningLinker::StatementHandler.post_statement(<connection>, <statement>)
 ```
+
+## Connection hash
+
+ The connection hash expected by LearningLinker requires two properties, both relating to values you can find in your LearningLocker instance's "client" section:
+
+ - `xapi_url` - xAPI Endpoint. Example: `https://locker.example.com/data/xAPI`
+ - `basic_auth` - Basic auth token string, with "Basic " prepended. Example: `Basic OWY3YmRmNzkxZjBkMjA5MzBmM2JlMGVkYTQ1Y2E0OTZhYjExampleToyMmU3OGQ3YjQ5MGJhYWRlNTg5NTgwNzg5ZTA1ZjRkOTQ3YjRkMDg5`
 
 ### Statement constants
 
@@ -65,8 +72,10 @@ To put it all together, here's an example call that might be made when a student
 
 ```ruby
   LearningLinker::PostStatementWorker.perform_async(
-    <endpoint_url>,
-    <auth_token>,
+    {
+      xapi_url: "https://locker.example.com/data/xAPI"
+      basic_auth: "Basic OWY3YmRmNzkxZjBkMjA5MzBmM2JlMGVkYTQ1Y2E0OTZhYjExampleToyMmU3OGQ3YjQ5MGJhYWRlNTg5NTgwNzg5ZTA1ZjRkOTQ3YjRkMDg5"
+    },
     {
       actor:   {
         name:       @student.name,

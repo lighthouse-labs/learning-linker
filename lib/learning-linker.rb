@@ -105,15 +105,15 @@ module LearningLinker
   # Class for creating statements and posting them to LearningLocker LRS
   class StatementHandler
     # Send a statement to the LRS via HTTP
-    def self.post_statement(endpoint, auth_token, statement)
-      unless endpoint && auth_token
-        puts 'Warning: LRS not configured! No statement was sent.'
+    def self.post_statement(connection, statement)
+      unless connection && connection[:xapi_url] && connection[:basic_auth]
+        puts 'Warning: Connection info missing or incomplete! No statement was sent.'
         return
       end
 
-      response = HTTParty.post("#{endpoint}/statements", {
+      response = HTTParty.post("#{connection[:xapi_url]}/statements", {
                                  body: statement.to_json,
-                                 headers: { 'Authorization': auth_token.to_s,
+                                 headers: { 'Authorization': connection[:basic_auth].to_s,
                                             'X-Experience-API-Version': '1.0.3',
                                             'Content-Type': 'application/json' }
                                })
