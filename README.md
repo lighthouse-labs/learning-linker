@@ -10,29 +10,28 @@ To add this gem to your Rails project, add the following line to your gemfile, u
 
 Then run `bundle`!
 
-### Environment Variables
-
-Ensure your Rails environment has the following environment variables:
-
-| `LRS_XAPI_URL`  | URL leading to the xAPI endpoint of your LearningLocker LRS |
-| --------------- | ----------------------------------------------------------- |
-| `LRS_XAPI_AUTH` | Basic Authorization token for the LearningLocker instance   |
-
 ## Using in a project
 
-Once the gem is installed in your project and the environment is set up, you can start posting statements! There are two functions you can use for this, and they both take an xAPI statement hash as a parameter:
+Once the gem is installed in your project, you can start posting statements! There are two functions you can use for this, and they both take hashes of connection information and an xAPI statement as parameters.
 
 For asynchronous statement posting, if you're working with `sidekiq` (recommended):
 
 ```ruby
-LearningLinker::PostStatementWorker.perform_async(...)
+LearningLinker::PostStatementWorker.perform_async(<connection>, <statement>)
 ```
 
 If `sidekiq` is not a part of your project, you can post the statement synchronously with:
 
 ```ruby
-LearningLinker::StatementHandler.post_statement(...)
+LearningLinker::StatementHandler.post_statement(<connection>, <statement>)
 ```
+
+## Connection hash
+
+ The connection hash expected by LearningLinker requires two properties, both relating to values you can find in your LearningLocker instance's "client" section:
+
+ - `xapi_url` - xAPI Endpoint. Example: `https://locker.example.com/data/xAPI`
+ - `basic_auth` - Basic auth token string, with "Basic " prepended. Example: `Basic OWY3YmRmNzkxZjBkMjA5MzBmM2JlMGVkYTQ1Y2E0OTZhYjExampleToyMmU3OGQ3YjQ5MGJhYWRlNTg5NTgwNzg5ZTA1ZjRkOTQ3YjRkMDg5`
 
 ### Statement constants
 
@@ -72,7 +71,12 @@ While you're free to form a complete custom statement from scratch, this gem als
 To put it all together, here's an example call that might be made when a student (`@student`) views an activity (`@activity`):
 
 ```ruby
-  LearningLinker::PostStatementWorker.perform_async({
+  LearningLinker::PostStatementWorker.perform_async(
+    {
+      xapi_url: "https://locker.example.com/data/xAPI"
+      basic_auth: "Basic OWY3YmRmNzkxZjBkMjA5MzBmM2JlMGVkYTQ1Y2E0OTZhYjExampleToyMmU3OGQ3YjQ5MGJhYWRlNTg5NTgwNzg5ZTA1ZjRkOTQ3YjRkMDg5"
+    },
+    {
       actor:   {
         name:       @student.name,
         mbox:       "mailto:#{@student.email}",

@@ -105,15 +105,15 @@ module LearningLinker
   # Class for creating statements and posting them to LearningLocker LRS
   class StatementHandler
     # Send a statement to the LRS via HTTP
-    def self.post_statement(statement)
-      unless ENV['LRS_XAPI_URL'] && ENV['LRS_XAPI_AUTH']
-        puts 'Warning: LRS not configured! No statement was sent.'
+    def self.post_statement(connection, statement)
+      unless connection && connection['xapi_url'] && connection['basic_auth']
+        puts 'Warning: Connection info missing or incomplete! No statement was sent.'
         return
       end
 
-      response = HTTParty.post("#{ENV['LRS_XAPI_URL']}/statements", {
+      response = HTTParty.post("#{connection['xapi_url']}/statements", {
                                  body: statement.to_json,
-                                 headers: { 'Authorization': "Basic #{ENV['LRS_XAPI_AUTH']}",
+                                 headers: { 'Authorization': connection['basic_auth'].to_s,
                                             'X-Experience-API-Version': '1.0.3',
                                             'Content-Type': 'application/json' }
                                })
@@ -130,8 +130,8 @@ module LearningLinker
 
     sidekiq_options retry: false
 
-    def perform(statement)
-      StatementHandler.post_statement(statement)
+    def perform(connection, statement)
+      StatementHandler.post_statement(connection, statement)
     end
   end
 end
