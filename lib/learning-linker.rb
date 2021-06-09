@@ -130,8 +130,8 @@ module LearningLinker
 
     sidekiq_options retry: false
 
-    def perform(endpoint, auth_token, statement)
-      StatementHandler.post_statement(endpoint, auth_token, statement)
+    def perform(connection, statement)
+      StatementHandler.post_statement(connection, statement)
     end
   end
 end
