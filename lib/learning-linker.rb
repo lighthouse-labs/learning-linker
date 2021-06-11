@@ -84,6 +84,14 @@ module LearningLinker
         "type": 'http://activitystrea.ms/schema/1.0/review'
       }
     },
+    "daily_feedback": {
+      "id": 'http://lighthouselabs.ca/xapi/activities/daily-feedback',
+      "definition": {
+        "name": { "en-US": 'Daily Feedback' },
+        "description": { "en-US": "A student's feedback for a given program day in Compass." },
+        "type": 'http://id.tincanapi.com/activitytype/review'
+      }
+    },
     "lecture_feedback": {
       "id": 'http://lighthouselabs.ca/xapi/activities/lecture-feedback',
       "definition": {
@@ -105,12 +113,16 @@ module LearningLinker
   EXTENSIONS = {
     "assistance_id": 'http://lighthouselabs.ca/xapi/extensions/assistance-id',
     "activity_name": 'http://lighthouselabs.ca/xapi/extensions/activity-name',
+    "activity_prep": 'http://lighthouselabs.ca/xapi/extensions/activity-prep',
+    "activity_stretch": 'http://lighthouselabs.ca/xapi/extensions/activity-stretch',
     "activity_type": 'http://lighthouselabs.ca/xapi/extensions/activity-type',
     "activity_uuid": 'http://lighthouselabs.ca/xapi/extensions/activity-uuid',
+    "cohort": 'http://lighthouselabs.ca/xapi/extensions/cohort',
     "github_url": 'http://lighthouselabs.ca/xapi/extensions/github-url',
     "learner_info": 'http://lighthouselabs.ca/xapi/extensions/learner-info',
     "mentor_notes": 'http://lighthouselabs.ca/xapi/extensions/mentor-notes',
-    "request_id": 'http://lighthouselabs.ca/xapi/extensions/request_id',
+    "program_day": 'http://lighthouselabs.ca/xapi/extensions/program-day',
+    "request_id": 'http://lighthouselabs.ca/xapi/extensions/request-id',
     "request_reason": 'http://lighthouselabs.ca/xapi/extensions/request-reason',
     "student_notes": 'http://lighthouselabs.ca/xapi/extensions/student-notes',
     "tags": 'http://lighthouselabs.ca/xapi/extensions/tags'
