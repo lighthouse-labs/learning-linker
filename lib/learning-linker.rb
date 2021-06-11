@@ -112,6 +112,7 @@ module LearningLinker
 
   EXTENSIONS = {
     "assistance_id": 'http://lighthouselabs.ca/xapi/extensions/assistance-id',
+    "activity_day": 'http://lighthouselabs.ca/xapi/extensions/activity-day',
     "activity_name": 'http://lighthouselabs.ca/xapi/extensions/activity-name',
     "activity_prep": 'http://lighthouselabs.ca/xapi/extensions/activity-prep',
     "activity_stretch": 'http://lighthouselabs.ca/xapi/extensions/activity-stretch',
