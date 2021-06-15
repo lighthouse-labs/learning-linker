@@ -5,6 +5,12 @@ module LearningLinker
   require 'sidekiq'
 
   VERBS = {
+    "attempted": {
+      "id": 'http://adlnet.gov/expapi/verbs/attempted',
+      "display": {
+        "en-US": 'attempted'
+      }
+    },
     "cancelled": {
       "id": 'http://activitystrea.ms/schema/1.0/cancel',
       "display": {
@@ -68,20 +74,20 @@ module LearningLinker
         "type": 'http://id.tincanapi.com/activitytype/tutor-session'
       }
     },
-    "assistance_request": {
-      "id": 'http://lighthouselabs.ca/xapi/activities/assistance-request',
-      "definition": {
-        "name": { "en-US": 'Assistance Request' },
-        "description": { "en-US": "A student's request for assistance from a mentor." },
-        "type": 'http://id.tincanapi.com/activitytype/tutor-session'
-      }
-    },
     "assistance_feedback": {
       "id": 'http://lighthouselabs.ca/xapi/activities/assistance-feedback',
       "definition": {
         "name": { "en-US": 'Assistance Feedback' },
         "description": { "en-US": 'Feedback from either student or mentor about an assistance.' },
         "type": 'http://activitystrea.ms/schema/1.0/review'
+      }
+    },
+    "assistance_request": {
+      "id": 'http://lighthouselabs.ca/xapi/activities/assistance-request',
+      "definition": {
+        "name": { "en-US": 'Assistance Request' },
+        "description": { "en-US": "A student's request for assistance from a mentor." },
+        "type": 'http://id.tincanapi.com/activitytype/tutor-session'
       }
     },
     "daily_feedback": {
@@ -107,6 +113,14 @@ module LearningLinker
         "description": { "en-US": 'A Compass student project. Requires submission and is evaluated by staff.' },
         "type": 'http://id.tincanapi.com/activitytype/project'
       }
+    },
+    "quiz": {
+      "id": 'http://lighthouselabs.ca/xapi/activities/quiz',
+      "definition": {
+        "name": { "en-US": 'Quiz' },
+        "description": { "en-US": 'A quiz presented to a student in Compass. Used to assess student progress on learning outcomes.' },
+        "type": 'http://id.tincanapi.com/activitytype/school-assignment'
+      }
     }
   }.freeze
 
@@ -120,11 +134,13 @@ module LearningLinker
     "activity_uuid": 'http://lighthouselabs.ca/xapi/extensions/activity-uuid',
     "cohort": 'http://lighthouselabs.ca/xapi/extensions/cohort',
     "curriculum_day": 'http://lighthouselabs.ca/xapi/extensions/curriculum-day',
+    "first_attempt": 'http://lighthouselabs.ca/xapi/extensions/first_attempt',
     "github_url": 'http://lighthouselabs.ca/xapi/extensions/github-url',
     "learner_info": 'http://lighthouselabs.ca/xapi/extensions/learner-info',
     "mentor_notes": 'http://lighthouselabs.ca/xapi/extensions/mentor-notes',
     "request_id": 'http://lighthouselabs.ca/xapi/extensions/request-id',
     "request_reason": 'http://lighthouselabs.ca/xapi/extensions/request-reason',
+    "skipped_questions": 'http://lighthouselabs.ca/xapi/extensions/skipped-questions',
     "student_notes": 'http://lighthouselabs.ca/xapi/extensions/student-notes',
     "tags": 'http://lighthouselabs.ca/xapi/extensions/tags'
   }.freeze

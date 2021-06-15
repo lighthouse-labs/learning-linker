@@ -39,6 +39,7 @@ While you're free to form a complete custom statement from scratch, this gem als
 
 `LearningLinker::VERBS`
 
+- `:attempted`
 - `:cancelled`
 - `:completed`
 - `:received`
@@ -53,20 +54,29 @@ While you're free to form a complete custom statement from scratch, this gem als
 - `:assistance`
 - `:assistance_feedback`
 - `:assistance_request`
+- `:daily_feedback`
 - `:lecture_feedback`
 - `:project`
+- `:quiz`
 
 `LearningLinker::EXTENSIONS`
 
+- `:assistance_id`
+- `:activity_day`
 - `:activity_name`
+- `:activity_prep`
+- `:activity_stretch`
 - `:activity_type`
 - `:activity_uuid`
-- `:assistance_id`
+- `:cohort`
+- `:curriculum_day`
+- `:first_attempt`
 - `:github_url`
 - `:learner_info`
 - `:mentor_notes`
 - `:request_id`
 - `:request_reason`
+- `:skipped_questions`
 - `:student_notes`
 - `:tags`
 
