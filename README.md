@@ -57,6 +57,7 @@ While you're free to form a complete custom statement from scratch, this gem als
 - `:daily_feedback`
 - `:lecture_feedback`
 - `:project`
+- `:project_evaluation`
 - `:quiz`
 
 `LearningLinker::EXTENSIONS`

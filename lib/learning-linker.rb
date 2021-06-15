@@ -114,6 +114,14 @@ module LearningLinker
         "type": 'http://id.tincanapi.com/activitytype/project'
       }
     },
+    "project_evaluation": {
+      "id": 'http://lighthouselabs.ca/xapi/activities/project-evaluation',
+      "definition": {
+        "name": { "en-US": 'Project Evaluation' },
+        "description": { "en-US": "An evaluation given by a mentor for a student's project." },
+        "type": 'http://id.tincanapi.com/activitytype/review'
+      }
+    },
     "quiz": {
       "id": 'http://lighthouselabs.ca/xapi/activities/quiz',
       "definition": {
