@@ -54,7 +54,7 @@ While you're free to form a complete custom statement from scratch, this gem als
 - `:assistance`
 - `:assistance_feedback`
 - `:assistance_request`
-- `:daily_feedback`
+- `:day_feedback`
 - `:lecture_feedback`
 - `:project`
 - `:quiz`
@@ -74,6 +74,7 @@ While you're free to form a complete custom statement from scratch, this gem als
 - `:github_url`
 - `:learner_info`
 - `:mentor_notes`
+- `:mood`
 - `:request_id`
 - `:request_reason`
 - `:skipped_questions`

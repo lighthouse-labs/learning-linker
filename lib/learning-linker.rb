@@ -90,7 +90,7 @@ module LearningLinker
         "type": 'http://id.tincanapi.com/activitytype/tutor-session'
       }
     },
-    "daily_feedback": {
+    "day_feedback": {
       "id": 'http://lighthouselabs.ca/xapi/activities/daily-feedback',
       "definition": {
         "name": { "en-US": 'Daily Feedback' },
@@ -138,6 +138,7 @@ module LearningLinker
     "github_url": 'http://lighthouselabs.ca/xapi/extensions/github-url',
     "learner_info": 'http://lighthouselabs.ca/xapi/extensions/learner-info',
     "mentor_notes": 'http://lighthouselabs.ca/xapi/extensions/mentor-notes',
+    "mood": 'http://lighthouselabs.ca/xapi/extensions/mood',
     "request_id": 'http://lighthouselabs.ca/xapi/extensions/request-id',
     "request_reason": 'http://lighthouselabs.ca/xapi/extensions/request-reason',
     "skipped_questions": 'http://lighthouselabs.ca/xapi/extensions/skipped-questions',
