@@ -90,10 +90,10 @@ module LearningLinker
         "type": 'http://id.tincanapi.com/activitytype/tutor-session'
       }
     },
-    "daily_feedback": {
-      "id": 'http://lighthouselabs.ca/xapi/activities/daily-feedback',
+    "day_feedback": {
+      "id": 'http://lighthouselabs.ca/xapi/activities/day-feedback',
       "definition": {
-        "name": { "en-US": 'Daily Feedback' },
+        "name": { "en-US": 'Day Feedback' },
         "description": { "en-US": "A student's feedback for a given program day in Compass." },
         "type": 'http://id.tincanapi.com/activitytype/review'
       }

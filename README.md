@@ -54,7 +54,7 @@ While you're free to form a complete custom statement from scratch, this gem als
 - `:assistance`
 - `:assistance_feedback`
 - `:assistance_request`
-- `:daily_feedback`
+- `:day_feedback`
 - `:lecture_feedback`
 - `:project`
 - `:project_evaluation`
