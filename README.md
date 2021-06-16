@@ -58,6 +58,7 @@ While you're free to form a complete custom statement from scratch, this gem als
 - `:lecture_feedback`
 - `:project`
 - `:project_evaluation`
+- `:tech_interview`
 - `:quiz`
 
 `LearningLinker::EXTENSIONS`
@@ -76,10 +77,13 @@ While you're free to form a complete custom statement from scratch, this gem als
 - `:learner_info`
 - `:mentor_notes`
 - `:mood`
+- `:program`
 - `:request_id`
 - `:request_reason`
+- `:score_details`
 - `:skipped_questions`
 - `:student_notes`
+- `:student_uid`
 - `:tags`
 
 ### Example statement post call

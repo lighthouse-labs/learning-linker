@@ -122,12 +122,20 @@ module LearningLinker
         "type": 'http://id.tincanapi.com/activitytype/review'
       }
     },
+    "tech_interview": {
+      "id": 'http://lighthouselabs.ca/xapi/activities/quiz',
+      "definition": {
+        "name": { "en-US": 'Technical Interview' },
+        "description": { "en-US": 'A meeting between a mentor and student to determine knowledge and application level of student.' },
+        "type": 'http://adlnet.gov/expapi/activities/assessment'
+      }
+    },
     "quiz": {
       "id": 'http://lighthouselabs.ca/xapi/activities/quiz',
       "definition": {
         "name": { "en-US": 'Quiz' },
         "description": { "en-US": 'A quiz presented to a student in Compass. Used to assess student progress on learning outcomes.' },
-        "type": 'http://id.tincanapi.com/activitytype/school-assignment'
+        "type": 'http://adlnet.gov/expapi/activities/assessment'
       }
     }
   }.freeze
@@ -147,10 +155,13 @@ module LearningLinker
     "learner_info": 'http://lighthouselabs.ca/xapi/extensions/learner-info',
     "mentor_notes": 'http://lighthouselabs.ca/xapi/extensions/mentor-notes',
     "mood": 'http://lighthouselabs.ca/xapi/extensions/mood',
+    "program": 'http://lighthouselabs.ca/xapi/extensions/program',
     "request_id": 'http://lighthouselabs.ca/xapi/extensions/request-id',
     "request_reason": 'http://lighthouselabs.ca/xapi/extensions/request-reason',
+    "score_details": 'http://lighthouselabs.ca/xapi/extensions/score-details',
     "skipped_questions": 'http://lighthouselabs.ca/xapi/extensions/skipped-questions',
     "student_notes": 'http://lighthouselabs.ca/xapi/extensions/student-notes',
+    "student_uid": 'http://lighthouselabs.ca/xapi/extensions/student-uid',
     "tags": 'http://lighthouselabs.ca/xapi/extensions/tags'
   }.freeze
 
