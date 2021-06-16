@@ -160,6 +160,7 @@ module LearningLinker
     "request_reason": 'http://lighthouselabs.ca/xapi/extensions/request-reason',
     "score_details": 'http://lighthouselabs.ca/xapi/extensions/score-details',
     "skipped_questions": 'http://lighthouselabs.ca/xapi/extensions/skipped-questions',
+    "status": 'http://lighthouselabs.ca/xapi/extensions/status',
     "student_notes": 'http://lighthouselabs.ca/xapi/extensions/student-notes',
     "student_uid": 'http://lighthouselabs.ca/xapi/extensions/student-uid',
     "tags": 'http://lighthouselabs.ca/xapi/extensions/tags'

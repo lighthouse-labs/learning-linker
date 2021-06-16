@@ -82,6 +82,7 @@ While you're free to form a complete custom statement from scratch, this gem als
 - `:request_reason`
 - `:score_details`
 - `:skipped_questions`
+- `:status`
 - `:student_notes`
 - `:student_uid`
 - `:tags`
