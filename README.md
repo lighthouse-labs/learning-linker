@@ -72,6 +72,7 @@ While you're free to form a complete custom statement from scratch, this gem als
 - `:activity_uuid`
 - `:cohort`
 - `:curriculum_day`
+- `:deployment`
 - `:first_attempt`
 - `:github_url`
 - `:learner_info`

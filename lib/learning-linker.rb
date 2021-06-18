@@ -150,6 +150,7 @@ module LearningLinker
     "activity_uuid": 'http://lighthouselabs.ca/xapi/extensions/activity-uuid',
     "cohort": 'http://lighthouselabs.ca/xapi/extensions/cohort',
     "curriculum_day": 'http://lighthouselabs.ca/xapi/extensions/curriculum-day',
+    "deployment": 'http://lighthouselabs.ca/xapi/extensions/deployment',
     "first_attempt": 'http://lighthouselabs.ca/xapi/extensions/first_attempt',
     "github_url": 'http://lighthouselabs.ca/xapi/extensions/github-url',
     "learner_info": 'http://lighthouselabs.ca/xapi/extensions/learner-info',
