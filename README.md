@@ -28,10 +28,10 @@ LearningLinker::StatementHandler.post_statement(<connection>, <statement>)
 
 ## Connection hash
 
- The connection hash expected by LearningLinker requires two properties, both relating to values you can find in your LearningLocker instance's "client" section:
+The connection hash expected by LearningLinker requires two properties, both relating to values you can find in your LearningLocker instance's "client" section:
 
- - `xapi_url` - xAPI Endpoint. Example: `https://locker.example.com/data/xAPI`
- - `basic_auth` - Basic auth token string, with "Basic " prepended. Example: `Basic OWY3YmRmNzkxZjBkMjA5MzBmM2JlMGVkYTQ1Y2E0OTZhYjExampleToyMmU3OGQ3YjQ5MGJhYWRlNTg5NTgwNzg5ZTA1ZjRkOTQ3YjRkMDg5`
+- `xapi_url` - xAPI Endpoint. Example: `https://locker.example.com/data/xAPI`
+- `basic_auth` - Basic auth token string, with "Basic " prepended. Example: `Basic OWY3YmRmNzkxZjBkMjA5MzBmM2JlMGVkYTQ1Y2E0OTZhYjExampleToyMmU3OGQ3YjQ5MGJhYWRlNTg5NTgwNzg5ZTA1ZjRkOTQ3YjRkMDg5`
 
 ### Statement constants
 
@@ -39,32 +39,54 @@ While you're free to form a complete custom statement from scratch, this gem als
 
 `LearningLinker::VERBS`
 
-- `:completed`
-- `:submitted`
+- `:attempted`
 - `:cancelled`
+- `:completed`
+- `:received`
+- `:started`
+- `:submitted`
 - `:viewed`
 
 `LearningLinker::OBJECTS`
 
-- `:assistance_request`
-- `:assistance_feedback`
 - `:activity`
 - `:activity_feedback`
-- `:project`
+- `:assistance`
+- `:assistance_feedback`
+- `:assistance_request`
+- `:day_feedback`
 - `:lecture_feedback`
-- `:prep_course`
+- `:project`
+- `:project_evaluation`
+- `:tech_interview`
+- `:quiz`
 
 `LearningLinker::EXTENSIONS`
 
-- `:learner_info`
-- `:tags`
-- `:mentor_notes`
-- `:request_reason`
+- `:assistance_id`
+- `:activity_day`
 - `:activity_name`
+- `:activity_prep`
+- `:activity_stretch`
 - `:activity_type`
 - `:activity_uuid`
-- `:student_notes`
+- `:cohort`
+- `:curriculum_day`
+- `:deployment`
+- `:first_attempt`
 - `:github_url`
+- `:learner_info`
+- `:mentor_notes`
+- `:mood`
+- `:program`
+- `:request_id`
+- `:request_reason`
+- `:score_details`
+- `:skipped_questions`
+- `:status`
+- `:student_notes`
+- `:student_uid`
+- `:tags`
 
 ### Example statement post call
 
