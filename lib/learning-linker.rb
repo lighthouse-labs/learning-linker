@@ -193,7 +193,7 @@ module LearningLinker
   class PostStatementWorker
     include Sidekiq::Worker
 
-    sidekiq_options retry: false
+    sidekiq_options retry: 5
 
     def perform(connection, statement)
       StatementHandler.post_statement(connection, statement)
