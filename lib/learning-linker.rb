@@ -190,6 +190,8 @@ module LearningLinker
   end
 
   # Sidekiq worker for posting statements in the background
+  # Perhaps not the best implementation, since apps using this gem could easily spin up their own worker with their own settings. Convenient for us for now though
+  # If we remove this at any point, we can also remove the sidekiq dep -Q
   class PostStatementWorker
     include Sidekiq::Worker
 
