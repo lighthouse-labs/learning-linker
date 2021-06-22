@@ -1,6 +1,6 @@
 # Learning Linker
 
-Custom Ruby gem for communicating with LearningLocker instances using the xAPI spec.
+Custom Ruby gem for communicating with LearningLocker instances using the xAPI spec. Provides a simplified interface for posting statements in Rails projects, as well as a built-in dictionary of statement terms used commonly by LHL products.
 
 ## Setup
 
@@ -14,17 +14,29 @@ Then run `bundle`!
 
 Once the gem is installed in your project, you can start posting statements! There are two functions you can use for this, and they both take hashes of connection information and an xAPI statement as parameters.
 
-For asynchronous statement posting, if you're working with `sidekiq` (recommended):
-
-```ruby
-LearningLinker::PostStatementWorker.perform_async(<connection>, <statement>)
-```
-
-If `sidekiq` is not a part of your project, you can post the statement synchronously with:
+To post a statement synchronously:
 
 ```ruby
 LearningLinker::StatementHandler.post_statement(<connection>, <statement>)
 ```
+
+### Asynchronous Statement Posting
+
+If your project uses `sidekiq`, we highly recommend adding a worker script to handle posting statements asynchronously. Example of a simple worker to accomplish this:
+
+```ruby
+class PostStatementWorker
+  include Sidekiq::Worker
+
+  sidekiq_options retry: 5 # optional; allows sidekiq to retry post up to 5 times, in case of failure
+
+  def perform(connection, statement)
+    StatementHandler.post_statement(connection, statement)
+  end
+end
+```
+
+Once added to your project, you can call `PostStatementWorker.perform_async`, with the same arguments taken by `LearningLinker::StatementHandler.post_statement`, to post a statement asynchronously!
 
 ## Connection hash
 
@@ -93,7 +105,7 @@ While you're free to form a complete custom statement from scratch, this gem als
 To put it all together, here's an example call that might be made when a student (`@student`) views an activity (`@activity`):
 
 ```ruby
-  LearningLinker::PostStatementWorker.perform_async(
+  LearningLinker::StatementHandler.post_statement(
     {
       xapi_url: "https://locker.example.com/data/xAPI"
       basic_auth: "Basic OWY3YmRmNzkxZjBkMjA5MzBmM2JlMGVkYTQ1Y2E0OTZhYjExampleToyMmU3OGQ3YjQ5MGJhYWRlNTg5NTgwNzg5ZTA1ZjRkOTQ3YjRkMDg5"
