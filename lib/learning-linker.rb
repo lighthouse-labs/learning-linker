@@ -157,6 +157,7 @@ module LearningLinker
     "mentor_notes": 'http://lighthouselabs.ca/xapi/extensions/mentor-notes',
     "mood": 'http://lighthouselabs.ca/xapi/extensions/mood',
     "program": 'http://lighthouselabs.ca/xapi/extensions/program',
+    "queue_wait_seconds": 'http://lighthouselabs.ca/xapi/extensions/queue-wait-seconds',
     "request_id": 'http://lighthouselabs.ca/xapi/extensions/request-id',
     "request_reason": 'http://lighthouselabs.ca/xapi/extensions/request-reason',
     "score_details": 'http://lighthouselabs.ca/xapi/extensions/score-details',
