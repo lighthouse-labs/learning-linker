@@ -8,5 +8,4 @@ Gem::Specification.new do |spec|
   spec.files = ['lib/learning-linker.rb']
   spec.require_paths = ['lib']
   spec.add_dependency 'httparty'
-  spec.add_dependency 'sidekiq'
 end
