@@ -91,6 +91,7 @@ While you're free to form a complete custom statement from scratch, this gem als
 - `:mentor_notes`
 - `:mood`
 - `:program`
+- `:queue_wait_seconds`
 - `:request_id`
 - `:request_reason`
 - `:score_details`
