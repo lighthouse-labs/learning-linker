@@ -2,7 +2,6 @@
 
 module LearningLinker
   require 'httparty'
-  require 'sidekiq'
 
   VERBS = {
     "attempted": {
@@ -21,6 +20,12 @@ module LearningLinker
       "id": 'http://activitystrea.ms/schema/1.0/complete',
       "display": {
         "en-US": 'completed'
+      }
+    },
+    "progressed": {
+      "id": 'http://adlnet.gov/expapi/verbs/progressed',
+      "display": {
+        "en-US": 'progressed'
       }
     },
     "received": {
@@ -114,6 +119,14 @@ module LearningLinker
         "type": 'http://id.tincanapi.com/activitytype/project'
       }
     },
+    "programming_test": {
+      "id": 'http://lighthouselabs.ca/xapi/activities/programming_test',
+      "definition": {
+        "name": { "en-US": 'Programming Test' },
+        "description": { "en-US": "An evaluation of a student's problem-solving abilities using code submissions and an automated scoring system." },
+        "type": 'http://adlnet.gov/expapi/activities/assessment'
+      }
+    },
     "project_evaluation": {
       "id": 'http://lighthouselabs.ca/xapi/activities/project-evaluation',
       "definition": {
@@ -153,9 +166,11 @@ module LearningLinker
     "deployment": 'http://lighthouselabs.ca/xapi/extensions/deployment',
     "first_attempt": 'http://lighthouselabs.ca/xapi/extensions/first_attempt',
     "github_url": 'http://lighthouselabs.ca/xapi/extensions/github-url',
+    "initial_score": 'http://lighthouselabs.ca/xapi/extensions/initial-score',
     "learner_info": 'http://lighthouselabs.ca/xapi/extensions/learner-info',
     "mentor_notes": 'http://lighthouselabs.ca/xapi/extensions/mentor-notes',
     "mood": 'http://lighthouselabs.ca/xapi/extensions/mood',
+    "overdue": 'http://lighthouselabs.ca/xapi/extensions/overdue',
     "program": 'http://lighthouselabs.ca/xapi/extensions/program',
     "queue_wait_seconds": 'http://lighthouselabs.ca/xapi/extensions/queue-wait-seconds',
     "request_id": 'http://lighthouselabs.ca/xapi/extensions/request-id',

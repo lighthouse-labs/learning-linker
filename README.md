@@ -54,6 +54,7 @@ While you're free to form a complete custom statement from scratch, this gem als
 - `:attempted`
 - `:cancelled`
 - `:completed`
+- `:progressed`
 - `:received`
 - `:started`
 - `:submitted`
@@ -68,6 +69,7 @@ While you're free to form a complete custom statement from scratch, this gem als
 - `:assistance_request`
 - `:day_feedback`
 - `:lecture_feedback`
+- `:programming_test`
 - `:project`
 - `:project_evaluation`
 - `:tech_interview`
@@ -87,9 +89,11 @@ While you're free to form a complete custom statement from scratch, this gem als
 - `:deployment`
 - `:first_attempt`
 - `:github_url`
+- `:initial_score`
 - `:learner_info`
 - `:mentor_notes`
 - `:mood`
+- `:overdue`
 - `:program`
 - `:queue_wait_seconds`
 - `:request_id`
