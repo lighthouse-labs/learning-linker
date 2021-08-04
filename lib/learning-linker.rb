@@ -164,6 +164,7 @@ module LearningLinker
     "cohort": 'http://lighthouselabs.ca/xapi/extensions/cohort',
     "curriculum_day": 'http://lighthouselabs.ca/xapi/extensions/curriculum-day',
     "deployment": 'http://lighthouselabs.ca/xapi/extensions/deployment',
+    "exam_code": 'http://lighthouselabs.ca/xapi/extensions/exam-code',
     "first_attempt": 'http://lighthouselabs.ca/xapi/extensions/first_attempt',
     "github_url": 'http://lighthouselabs.ca/xapi/extensions/github-url',
     "initial_score": 'http://lighthouselabs.ca/xapi/extensions/initial-score',
@@ -180,7 +181,8 @@ module LearningLinker
     "status": 'http://lighthouselabs.ca/xapi/extensions/status',
     "student_notes": 'http://lighthouselabs.ca/xapi/extensions/student-notes',
     "student_uid": 'http://lighthouselabs.ca/xapi/extensions/student-uid',
-    "tags": 'http://lighthouselabs.ca/xapi/extensions/tags'
+    "tags": 'http://lighthouselabs.ca/xapi/extensions/tags',
+    "time_limit_minutes": 'http://lighthouselabs.ca/xapi/extensions/time-limit-minutes'
   }.freeze
 
   # Class for creating statements and posting them to LearningLocker LRS

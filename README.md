@@ -87,6 +87,7 @@ While you're free to form a complete custom statement from scratch, this gem als
 - `:cohort`
 - `:curriculum_day`
 - `:deployment`
+- `:exam_code`
 - `:first_attempt`
 - `:github_url`
 - `:initial_score`
@@ -104,6 +105,7 @@ While you're free to form a complete custom statement from scratch, this gem als
 - `:student_notes`
 - `:student_uid`
 - `:tags`
+- `:time_limit_minutes`
 
 ### Example statement post call
 
