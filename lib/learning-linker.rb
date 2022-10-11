@@ -165,6 +165,7 @@ module LearningLinker
     "curriculum_day": 'http://lighthouselabs.ca/xapi/extensions/curriculum-day',
     "deployment": 'http://lighthouselabs.ca/xapi/extensions/deployment',
     "exam_code": 'http://lighthouselabs.ca/xapi/extensions/exam-code',
+    "enrollment_id": 'http://lighthouselabs.ca/xapi/extensions/enrollment-id',
     "first_attempt": 'http://lighthouselabs.ca/xapi/extensions/first_attempt',
     "github_url": 'http://lighthouselabs.ca/xapi/extensions/github-url',
     "initial_score": 'http://lighthouselabs.ca/xapi/extensions/initial-score',
