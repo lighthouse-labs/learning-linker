@@ -88,6 +88,7 @@ While you're free to form a complete custom statement from scratch, this gem als
 - `:curriculum_day`
 - `:deployment`
 - `:exam_code`
+- `:enrollment_id`
 - `:first_attempt`
 - `:github_url`
 - `:initial_score`
